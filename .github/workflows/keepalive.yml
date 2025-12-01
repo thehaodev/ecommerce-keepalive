@@ -2,15 +2,20 @@ name: Keep Render Alive
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # every 5 minutes
-  workflow_dispatch:        # allow manual trigger
+    - cron: "*/5 * * * *"   # Run every 5 minutes
+  workflow_dispatch:          # Allow manual trigger
 
 jobs:
   keep_alive_job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Ping Render Health Endpoint
+      - name: Ping Production
         run: |
-          echo "Pinging Render..."
+          echo "Pinging Production..."
           curl -s -o /dev/null -w "%{http_code}\n" https://e-commerce-be-citd.onrender.com/health
+
+      - name: Ping Staging
+        run: |
+          echo "Pinging Staging..."
+          curl -s -o /dev/null -w "%{http_code}\n" https://e-commerce-be-citd-staging.onrender.com/health
