@@ -18,4 +18,4 @@ jobs:
       - name: Ping Staging
         run: |
           echo "Pinging Staging..."
-          curl -s -o /dev/null -w "%{http_code}\n" https://e-commerce-be-citd-staging.onrender.com/health
+          curl -s -o /dev/null -w "%{http_code}\n" https://e-commerce-be-citd-1.onrender.com/health
